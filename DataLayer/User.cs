@@ -20,8 +20,6 @@ namespace DataLayer
         public Nullable<int> Employee_ID { get; set; }
         public Nullable<int> Task_ID { get; set; }
         public Nullable<int> Project_ID { get; set; }
-        public Nullable<System.DateTime> Start_Date { get; set; }
-        public Nullable<System.DateTime> End_Date { get; set; }
     
         public virtual Project Project { get; set; }
         public virtual Task Task { get; set; }

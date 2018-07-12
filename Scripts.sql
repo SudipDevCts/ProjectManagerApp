@@ -31,8 +31,6 @@ CREATE TABLE Users  (
   Employee_ID   INTEGER,
   Task_ID INTEGER,
   Project_ID INTEGER,
-  Start_Date DateTime,
-  End_Date DateTime,
   FOREIGN KEY(Task_ID) REFERENCES Task(Task_ID),
   FOREIGN KEY(Project_ID) REFERENCES Project(Project_ID),
 );

@@ -8,12 +8,12 @@
         <EntityTypeShape EntityType="ProjectManagerDBModel.ParentTask" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectManagerDBModel.Project" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectManagerDBModel.Task" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagerDBModel.User" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="ProjectManagerDBModel.FK__Task__Parent_ID__276EDEB3" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectManagerDBModel.FK__Task__Project_ID__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="ProjectManagerDBModel.FK__Users__Project_I__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="ProjectManagerDBModel.FK__Users__Task_ID__2B3F6F97" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="ProjectManagerDBModel.User" Width="1.5" PointX="5.25" PointY="1.25" />
+        <AssociationConnector Association="ProjectManagerDBModel.FK__Users__Project_I__300424B4" />
+        <AssociationConnector Association="ProjectManagerDBModel.FK__Users__Task_ID__2F10007B" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

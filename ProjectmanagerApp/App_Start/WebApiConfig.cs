@@ -12,7 +12,7 @@ namespace ProjectmanagerApp
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            config.EnableCors(new EnableCorsAttribute("http://localhost", "*", "*"));
+            config.EnableCors(new EnableCorsAttribute("http://localhost:44851", "*", "*"));
             config.Formatters.JsonFormatter.SupportedMediaTypes
            .Add(new MediaTypeHeaderValue("text/html"));
 

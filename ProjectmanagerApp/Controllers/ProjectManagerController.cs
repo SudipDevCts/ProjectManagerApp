@@ -1,4 +1,4 @@
-﻿using ProjectmanagerApp.Models;
+﻿using BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +11,26 @@ namespace ProjectmanagerApp.Controllers
     [RoutePrefix("api")]
     public class ProjectManagerController : ApiController
     {
+        private BusinessLayer.ProjectManagerCore _businessLayer;
+        public ProjectManagerController()
+        {
+            var businessLayer = new BusinessLayer.ProjectManagerCore();
+            _businessLayer = businessLayer;    
+        }
+
         // POST: api/TaskManager
         [HttpPost]
         [Route("AddUser")]
-        public void AddUser(User user)
+        public void AddUser(UserModel user)
         {
-           
+            _businessLayer.AddUser(user);
+        }
+
+        [HttpGet]
+        [Route("GetUser")]
+        public int GetUser()
+        {
+            return 5;
         }
     }
 }

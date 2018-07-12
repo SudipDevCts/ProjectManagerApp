@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ProjectmanagerApp.Models
+namespace BusinessLayer.Models
 {
-    public class User
+    public class UserModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
