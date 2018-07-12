@@ -18,12 +18,26 @@ namespace ProjectmanagerApp.Controllers
             _businessLayer = businessLayer;    
         }
 
-        // POST: api/TaskManager
+
         [HttpPost]
         [Route("AddUser")]
         public void AddUser(UserModel user)
         {
             _businessLayer.AddUser(user);
+        }
+
+        [HttpPost]
+        [Route("UpdateUser")]
+        public void UpdateUser(UserModel user)
+        {
+            _businessLayer.UpdateUser(user);
+        }
+
+        [HttpDelete]
+        [Route("DeleteUser")]
+        public void DeleteUser(int user)
+        {
+            _businessLayer.DeleteUser(user);
         }
 
         [HttpGet]

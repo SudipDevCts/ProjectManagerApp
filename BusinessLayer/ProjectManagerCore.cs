@@ -45,5 +45,19 @@ namespace BusinessLayer
             }
             return userModels;
         }
+
+        public void UpdateUser(Models.UserModel userModel)
+        {
+            var user = new User();
+            user.User_ID = userModel.User_ID;
+            user.FirstName = userModel.FirstName;
+            user.LastName = userModel.LastName;
+            user.Employee_ID = userModel.EmployeeId;
+            _repository.UpdateUser(user);
+        }
+        public void DeleteUser(int uiserId)
+        {
+            _repository.DeleteUser(uiserId);
+        }
     }
 }

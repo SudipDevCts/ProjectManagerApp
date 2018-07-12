@@ -10,5 +10,7 @@ namespace DataLayer
     {
         void AddUser(User user);
         List<User> GetUsers();
+        void UpdateUser(User user);
+        void DeleteUser(int userId);
     }
 }
