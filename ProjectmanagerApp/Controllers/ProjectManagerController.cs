@@ -34,10 +34,10 @@ namespace ProjectmanagerApp.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteUser")]
-        public void DeleteUser(int user)
+        [Route("DeleteUser/{userId}")]
+        public void DeleteUser(int userId)
         {
-            _businessLayer.DeleteUser(user);
+            _businessLayer.DeleteUser(userId);
         }
 
         [HttpGet]

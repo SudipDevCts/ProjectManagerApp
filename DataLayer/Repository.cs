@@ -41,6 +41,7 @@ namespace DataLayer
         public void DeleteUser(int userId)
         {
             _db.Users.Remove(_db.Users.FirstOrDefault(x => x.User_ID == userId));
+            _db.SaveChanges();
         }
     }
 }
