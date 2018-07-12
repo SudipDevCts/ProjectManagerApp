@@ -9,6 +9,6 @@ namespace DataLayer
     public interface IRepository
     {
         void AddUser(User user);
-        
+        List<User> GetUsers();
     }
 }

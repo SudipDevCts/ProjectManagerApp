@@ -24,5 +24,10 @@ namespace DataLayer
             _db.Users.Add(user);
             _db.SaveChanges();
         }
+
+        public List<User> GetUsers()
+        {
+            return _db.Users.ToList();
+        }
     }
 }

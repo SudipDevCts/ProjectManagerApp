@@ -28,9 +28,9 @@ namespace ProjectmanagerApp.Controllers
 
         [HttpGet]
         [Route("GetUser")]
-        public int GetUser()
+        public List<UserModel> GetUser()
         {
-            return 5;
+            return _businessLayer.GetUsers();
         }
     }
 }
