@@ -30,9 +30,9 @@ namespace BusinessLayer
 
         public List<Models.UserModel> GetUsers()
         {
-            var users =  _repository.GetUsers();
+            var users = _repository.GetUsers();
             var userModels = new List<Models.UserModel>();
-            foreach(var usr in users)
+            foreach (var usr in users)
             {
                 var usrModel = new Models.UserModel()
                 {
@@ -58,6 +58,58 @@ namespace BusinessLayer
         public void DeleteUser(int uiserId)
         {
             _repository.DeleteUser(uiserId);
+        }
+
+        public void AddProject(Models.ProjectModel project)
+        {
+            var projectDb = new Project();
+            projectDb.Project1 = project.Project;
+            projectDb.Priority = project.Priority;
+            if (project.StartDate != null)
+                projectDb.StartDate = Convert.ToDateTime(project.StartDate);
+            if (project.EndDate != null)
+                projectDb.EndDate = Convert.ToDateTime(project.EndDate);
+            _repository.AddProject(projectDb, project.UserId);
+        }
+
+        public List<Models.ProjectModel> GetProjects()
+        {
+            var projects = _repository.GetProjects();
+            var projectModels = new List<Models.ProjectModel>();
+            foreach (var pr in projects)
+            {
+                var prModel = new Models.ProjectModel();
+                prModel.Project = pr.Project1;
+                prModel.Project_ID = pr.Project_ID;
+                prModel.Priority = pr.Priority.GetValueOrDefault();
+                prModel.StartDate = pr.StartDate.ToString();
+                prModel.EndDate = pr.EndDate.ToString();
+                prModel.TaskCount = pr.Tasks.Count();
+                prModel.UserId = pr.Users.Count() > 0 ? pr.Users.FirstOrDefault().User_ID: 0;
+                prModel.CompletedTasks = pr.Tasks != null ? pr.Tasks.Count(x => x.Status == "Completed") : 0;
+                projectModels.Add(prModel);
+            }
+            return projectModels;
+        }
+        public void EndProject(int projectId)
+        {
+            _repository.EndProject(projectId);
+        }
+        public BusinessLayer.Models.UserModel GetSpecificUser(int userId)
+        {
+            var userDb= _repository.GetSpecificUser(userId);
+            var user = new Models.UserModel() { FirstName= userDb.FirstName, LastName = userDb.LastName, EmployeeId = userDb.Employee_ID.GetValueOrDefault(), User_ID = userDb.User_ID};
+            return user;
+        }
+        public void UpdateProject(Models.ProjectModel prj)
+        {
+            Project project = new Project();
+            project.Project_ID = prj.Project_ID;
+            project.Project1 = prj.Project;
+            project.Priority = prj.Priority;
+            project.StartDate = Convert.ToDateTime(prj.StartDate);
+            project.EndDate = Convert.ToDateTime(prj.EndDate);
+            _repository.UpdateProject(project, prj.UserId);
         }
     }
 }

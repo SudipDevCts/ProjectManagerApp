@@ -12,5 +12,10 @@ namespace DataLayer
         List<User> GetUsers();
         void UpdateUser(User user);
         void DeleteUser(int userId);
+        void AddProject(Project project, int? userId = null, int? taskId = null);
+        List<Project> GetProjects();
+        void EndProject(int projectId);
+        User GetSpecificUser(int userId);
+        void UpdateProject(Project prj, int? userId = null);
     }
 }

@@ -41,10 +41,45 @@ namespace ProjectmanagerApp.Controllers
         }
 
         [HttpGet]
+        [Route("User/{userId}")]
+        public UserModel GetUser(int userId)
+        {
+            return _businessLayer.GetSpecificUser(userId);
+        }
+
+        [HttpGet]
         [Route("GetUser")]
         public List<UserModel> GetUser()
         {
             return _businessLayer.GetUsers();
+        }
+
+        [HttpPost]
+        [Route("AddProject")]
+        public void AddProject(ProjectModel prj)
+        {
+            _businessLayer.AddProject(prj);
+        }
+
+        [HttpPost]
+        [Route("UpdateProject")]
+        public void UpdateProject(ProjectModel prj)
+        {
+            _businessLayer.UpdateProject(prj);
+        }
+
+        [HttpGet]
+        [Route("GetProject")]
+        public List<ProjectModel> GetProject()
+        {
+            return _businessLayer.GetProjects();
+        }
+
+        [HttpPut]
+        [Route("EndProject")]
+        public void EndTask(ProjectModel project)
+        {
+            _businessLayer.EndProject(project.Project_ID);
         }
     }
 }
