@@ -128,5 +128,17 @@ namespace BusinessLayer
             }
             return result;
         }
+
+        public void AddTask(Models.TaskModel taskModel)
+        {
+            var task = new DataLayer.Task();
+            task.Task1 = taskModel.Task;
+            task.Priority = taskModel.Priority;
+            if (taskModel.StartDate != null)
+                task.Start_Date = Convert.ToDateTime(taskModel.StartDate);
+            if (taskModel.EndDate != null)
+                task.End_Date = Convert.ToDateTime(taskModel.EndDate);
+            _repository.AddTask(task, taskModel.Parent_ID, taskModel.User_ID, taskModel.Project_ID);
+        }
     }
 }
