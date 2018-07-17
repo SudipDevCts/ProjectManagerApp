@@ -106,5 +106,23 @@ namespace DataLayer
             _db.SaveChanges();
 
         }
+
+        public List<ParentTask> GetParentTasks()
+        {
+            return _db.ParentTasks.ToList();
+        }
+        public void AddParentTask(string taskTitle)
+        {
+            try { 
+            var parent = new ParentTask();
+            parent.Parent_Task = taskTitle;
+            _db.ParentTasks.Add(parent);
+            _db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }

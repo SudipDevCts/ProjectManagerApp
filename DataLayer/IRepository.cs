@@ -17,5 +17,7 @@ namespace DataLayer
         void EndProject(int projectId);
         User GetSpecificUser(int userId);
         void UpdateProject(Project prj, int? userId = null);
+        void AddParentTask(string taskTitle);
+        List<ParentTask> GetParentTasks();
     }
 }

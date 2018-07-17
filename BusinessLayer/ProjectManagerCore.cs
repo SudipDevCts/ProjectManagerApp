@@ -111,5 +111,22 @@ namespace BusinessLayer
             project.EndDate = Convert.ToDateTime(prj.EndDate);
             _repository.UpdateProject(project, prj.UserId);
         }
+
+        public void AddParentTask(string title)
+        {
+            _repository.AddParentTask(title);
+        }
+
+        public List<Models.ParentTask> GetparentTasks()
+        {
+            var parentTasks = _repository.GetParentTasks();
+            var result = new List<Models.ParentTask>();
+            foreach(var pt in parentTasks)
+            {
+                var ptask = new Models.ParentTask() { Parent_ID = pt.Parent_ID, Parent_Task = pt.Parent_Task };
+                result.Add(ptask);
+            }
+            return result;
+        }
     }
 }

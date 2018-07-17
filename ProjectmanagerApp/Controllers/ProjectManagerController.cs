@@ -81,5 +81,19 @@ namespace ProjectmanagerApp.Controllers
         {
             _businessLayer.EndProject(project.Project_ID);
         }
+
+        [HttpPost]
+        [Route("AddParentTask")]
+        public void AddParentTask(ParentTask pt)
+        {
+            _businessLayer.AddParentTask(pt.Parent_Task);
+        }
+
+        [HttpGet]
+        [Route("GetParentTasks")]
+        public List<ParentTask> GetParentTasks()
+        {
+            return _businessLayer.GetparentTasks();
+        }
     }
 }
