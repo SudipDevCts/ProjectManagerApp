@@ -20,5 +20,7 @@ namespace DataLayer
         void AddParentTask(string taskTitle);
         List<ParentTask> GetParentTasks();
         void AddTask(DataLayer.Task task, int? parentId = null, int? userId = null, int? projectId = null);
+        List<Task> GetTasks();
+        void EndTask(int taskId);
     }
 }

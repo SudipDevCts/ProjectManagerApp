@@ -111,6 +111,11 @@ namespace DataLayer
         {
             return _db.ParentTasks.ToList();
         }
+
+        public List<Task> GetTasks()
+        {
+            return _db.Tasks.ToList();
+        }
         public void AddParentTask(string taskTitle)
         {
             try { 
@@ -142,6 +147,13 @@ namespace DataLayer
             _db.Tasks.Add(task);
             _db.SaveChanges();
 
+        }
+
+        public void EndTask(int taskId)
+        {
+            var task = _db.Tasks.FirstOrDefault(x => x.Task_ID == taskId);
+            task.Status = "Complete";
+            _db.SaveChanges();
         }
     }
 }

@@ -16,5 +16,8 @@ namespace BusinessLayer.Models
         public string Task { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+        public string TaskStatus { get; set; }
+        public string ParentTask { get; set; }
+        public bool IsEditable { get; set; }
     }
 }

@@ -86,7 +86,7 @@ namespace BusinessLayer
                 prModel.EndDate = pr.EndDate.ToString();
                 prModel.TaskCount = pr.Tasks.Count();
                 prModel.UserId = pr.Users.Count() > 0 ? pr.Users.FirstOrDefault().User_ID: 0;
-                prModel.CompletedTasks = pr.Tasks != null ? pr.Tasks.Count(x => x.Status == "Completed") : 0;
+                prModel.CompletedTasks = pr.Tasks != null ? pr.Tasks.Count(x => x.Status == "Complete") : 0;
                 projectModels.Add(prModel);
             }
             return projectModels;
@@ -129,6 +129,31 @@ namespace BusinessLayer
             return result;
         }
 
+        public List<Models.TaskModel> GetTasks()
+        {
+            var tasks = _repository.GetTasks();
+            var result = new List<Models.TaskModel>();
+            foreach (var ts in tasks)
+            {
+                var ptask = new Models.TaskModel() {
+                    Task_ID = ts.Task_ID,
+                    Task = ts.Task1,
+                    Parent_ID = ts.Parent_ID.GetValueOrDefault(),
+                    Project_ID = ts.Project_ID.GetValueOrDefault(),
+                    User_ID = (ts.Users.FirstOrDefault()?.User_ID).GetValueOrDefault(),
+                    StartDate = Convert.ToString(ts.Start_Date),
+                    EndDate = Convert.ToString(ts.End_Date),
+                    Priority = ts.Priority.GetValueOrDefault(),
+                    TaskStatus = ts.Status,
+                    IsEditable = string.IsNullOrEmpty(ts.Status) ? true : ts.Status == "Complete" ? false : true,
+                    ParentTask = ts.ParentTask != null ? ts.ParentTask.Parent_Task : "This Task has no parent"
+
+            };
+                result.Add(ptask);
+            }
+            return result;
+        }
+
         public void AddTask(Models.TaskModel taskModel)
         {
             var task = new DataLayer.Task();
@@ -139,6 +164,11 @@ namespace BusinessLayer
             if (taskModel.EndDate != null)
                 task.End_Date = Convert.ToDateTime(taskModel.EndDate);
             _repository.AddTask(task, taskModel.Parent_ID, taskModel.User_ID, taskModel.Project_ID);
+        }
+
+        public void EndTask(int taskId)
+        {
+            _repository.EndTask(taskId);
         }
     }
 }

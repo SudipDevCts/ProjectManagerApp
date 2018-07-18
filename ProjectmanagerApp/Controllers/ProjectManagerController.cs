@@ -77,7 +77,7 @@ namespace ProjectmanagerApp.Controllers
 
         [HttpPut]
         [Route("EndProject")]
-        public void EndTask(ProjectModel project)
+        public void EndProject(ProjectModel project)
         {
             _businessLayer.EndProject(project.Project_ID);
         }
@@ -101,6 +101,20 @@ namespace ProjectmanagerApp.Controllers
         public List<ParentTask> GetParentTasks()
         {
             return _businessLayer.GetparentTasks();
+        }
+
+        [HttpGet]
+        [Route("GetTasks")]
+        public List<TaskModel> GetTasks()
+        {
+            return _businessLayer.GetTasks();
+        }
+
+        [HttpPut]
+        [Route("EndTask")]
+        public void EndTask(TaskModel task)
+        {
+            _businessLayer.EndTask(task.Task_ID);
         }
     }
 }
