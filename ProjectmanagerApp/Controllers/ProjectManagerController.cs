@@ -116,5 +116,12 @@ namespace ProjectmanagerApp.Controllers
         {
             _businessLayer.EndTask(task.Task_ID);
         }
+
+        [HttpGet]
+        [Route("Task/{taskId}")]
+        public TaskModel GetSpecificTask(int taskId)
+        {
+            return _businessLayer.GetSpecificTask(taskId);
+        }
     }
 }

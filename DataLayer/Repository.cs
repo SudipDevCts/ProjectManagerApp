@@ -155,5 +155,10 @@ namespace DataLayer
             task.Status = "Complete";
             _db.SaveChanges();
         }
+        public Task GetSpecificTask(int taskId)
+        {
+            var task = _db.Tasks.FirstOrDefault(x => x.Task_ID == taskId);
+            return task;
+        }
     }
 }

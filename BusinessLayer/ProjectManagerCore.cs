@@ -170,5 +170,25 @@ namespace BusinessLayer
         {
             _repository.EndTask(taskId);
         }
+
+        public Models.TaskModel GetSpecificTask(int taskId)
+        {
+            var task = _repository.GetSpecificTask(taskId);
+            var taskModel = new Models.TaskModel()
+            {
+                Task = task.Task1,
+                Task_ID = task.Task_ID,
+                Priority = task.Priority.GetValueOrDefault(),
+                StartDate = task.Start_Date == null ? string.Empty : task.Start_Date.Value.ToString(),
+                EndDate = task.End_Date == null ? string.Empty : task.End_Date.Value.ToString(),
+                ParentTask = task.ParentTask == null ? string.Empty : task.ParentTask.Parent_Task,
+                Parent_ID = task.Parent_ID.GetValueOrDefault(),
+                Project_ID = task.Project_ID.GetValueOrDefault(),
+                User_ID = task.Users.FirstOrDefault().User_ID,
+                Project = task.Project == null? string.Empty: task.Project.Project1,
+                User = task.Users.FirstOrDefault() == null ? string.Empty : task.Users.FirstOrDefault().FirstName+ ' ' + task.Users.FirstOrDefault().LastName
+            };
+            return taskModel;
+        }
     }
 }
