@@ -23,5 +23,6 @@ namespace DataLayer
         List<Task> GetTasks();
         void EndTask(int taskId);
         Task GetSpecificTask(int taskId);
+        void UpdateTask(DataLayer.Task task, int? parentId = null, int? userId = null);
     }
 }

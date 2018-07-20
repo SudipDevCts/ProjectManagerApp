@@ -149,6 +149,24 @@ namespace DataLayer
 
         }
 
+        public void UpdateTask(DataLayer.Task task, int? parentId = null, int? userId = null)
+        {
+            if (userId.HasValue && userId.Value > 0)
+            {
+                var user = _db.Users.FirstOrDefault(x => x.User_ID == userId.Value);
+                if (user != null)
+                {
+                    task.Users.Add(user);
+                }
+               
+                if (parentId.HasValue && parentId.Value > 0)
+                    task.Parent_ID = parentId;
+
+            }
+            _db.SaveChanges();
+
+        }
+
         public void EndTask(int taskId)
         {
             var task = _db.Tasks.FirstOrDefault(x => x.Task_ID == taskId);

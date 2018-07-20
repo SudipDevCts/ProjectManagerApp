@@ -166,6 +166,18 @@ namespace BusinessLayer
             _repository.AddTask(task, taskModel.Parent_ID, taskModel.User_ID, taskModel.Project_ID);
         }
 
+        public void UpdateTask(Models.TaskModel taskModel)
+        {
+            var task = _repository.GetSpecificTask(taskModel.Task_ID);
+            task.Task1 = taskModel.Task;
+            task.Priority = taskModel.Priority;
+            if (taskModel.StartDate != null)
+                task.Start_Date = Convert.ToDateTime(taskModel.StartDate);
+            if (taskModel.EndDate != null)
+                task.End_Date = Convert.ToDateTime(taskModel.EndDate);
+            _repository.UpdateTask(task, taskModel.Parent_ID, taskModel.User_ID);
+        }
+
         public void EndTask(int taskId)
         {
             _repository.EndTask(taskId);
@@ -184,7 +196,7 @@ namespace BusinessLayer
                 ParentTask = task.ParentTask == null ? string.Empty : task.ParentTask.Parent_Task,
                 Parent_ID = task.Parent_ID.GetValueOrDefault(),
                 Project_ID = task.Project_ID.GetValueOrDefault(),
-                User_ID = task.Users.FirstOrDefault().User_ID,
+                User_ID = task.Users.FirstOrDefault() == null ? 0: task.Users.FirstOrDefault().User_ID,
                 Project = task.Project == null? string.Empty: task.Project.Project1,
                 User = task.Users.FirstOrDefault() == null ? string.Empty : task.Users.FirstOrDefault().FirstName+ ' ' + task.Users.FirstOrDefault().LastName
             };

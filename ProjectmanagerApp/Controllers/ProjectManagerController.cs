@@ -123,5 +123,12 @@ namespace ProjectmanagerApp.Controllers
         {
             return _businessLayer.GetSpecificTask(taskId);
         }
+
+        [HttpPost]
+        [Route("UpdateTask")]
+        public void UpdateTask(TaskModel tsk)
+        {
+            _businessLayer.UpdateTask(tsk);
+        }
     }
 }
