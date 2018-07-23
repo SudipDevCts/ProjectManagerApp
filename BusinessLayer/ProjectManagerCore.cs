@@ -140,7 +140,7 @@ namespace BusinessLayer
                     Task = ts.Task1,
                     Parent_ID = ts.Parent_ID.GetValueOrDefault(),
                     Project_ID = ts.Project_ID.GetValueOrDefault(),
-                    User_ID = (ts.Users.FirstOrDefault()?.User_ID).GetValueOrDefault(),
+                    User_ID = ts.Users.FirstOrDefault() != null ? ts.Users.FirstOrDefault().User_ID : 0, 
                     StartDate = Convert.ToString(ts.Start_Date),
                     EndDate = Convert.ToString(ts.End_Date),
                     Priority = ts.Priority.GetValueOrDefault(),
